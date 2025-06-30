@@ -1,3 +1,94 @@
+# My Neovim Configuration
+
+I deleted my Neovim config by mistake. Don't ask me how. I also had no backups. Don't ask me about that also. I have fixed both issues. One is remapping `rm -rf` and the other is to properly configure my Syncthing instance. I had it properly configured on one side but not on the other. I have no idea why Syncthing had assymetric configs.
+
+Anyhow, this is my new Neovim config. I forked [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim/) and made some changes.
+
+## Plugin's List
+
+Here is a full list of the plugins I use.
+
+- AniMotion.nvim 0.81ms 📅 VeryLazy
+- blink.cmp 18.39ms 🔌 nvim-lspconfig
+- conform.nvim 5.92ms 📅 BufWritePre
+- darcubox-nvim 9.83ms 🚀 start
+- fidget.nvim 7.91ms 🔌 nvim-lspconfig
+- friendly-snippets 13.31ms 🔌 LuaSnip
+- gitsigns.nvim 1.46ms 🚀 start
+- grug-far.nvim 0.84ms 🚀 start
+- guess-indent.nvim 0.05ms 🚀 start
+- lazy.nvim 5.19ms 📄 init.lua
+- lazydev.nvim 0.43ms 🔌 blink.cmp
+- lualine.nvim 9.29ms 🚀 start
+- LuaSnip 15.37ms 🔌 blink.cmp
+- markview.nvim 10.29ms 🔌 nvim-treesitter
+- mason-lspconfig.nvim 0.22ms 🔌 nvim-lspconfig
+- mason-tool-installer.nvim 0.38ms 🔌 nvim-lspconfig
+- mason.nvim 3.54ms 🔌 nvim-lspconfig
+- mini.jump2d 0.51ms 🚀 start
+● mini.bufremove 0.86ms 🚀 start
+- no-neck-pain.nvim 1.41ms 🚀 start
+- noice.nvim 1.77ms 📅 VeryLazy
+● nvim-autopairs 6.98ms 📅 InsertEnter
+- nui.nvim 0.34ms 🔌 noice.nvim
+- nvim-colorizer.lua 1.4ms 📅 BufReadPre
+- nvim-lspconfig 76.91ms 🚀 start
+- nvim-notify 0.29ms 🔌 noice.nvim
+- nvim-surround 2.94ms 📅 VeryLazy
+- nvim-treesitter 14.96ms 🚀 start
+- plenary.nvim 0.33ms 🔌 telescope.nvim
+- scrollEOF.nvim 0.7ms 📅 CursorMoved
+- supermaven-nvim 4.66ms 🚀 start
+- telekasten.nvim 23.05ms 🚀 start
+- telescope-fzf-native.nvim 0.25ms 🔌 telescope.nvim
+- telescope-ui-select.nvim 0.27ms 🔌 telescope.nvim
+- telescope.nvim 11.55ms 🔌 telekasten.nvim
+- tiny-inline-diagnostic.nvim 2.42ms 📅 VeryLazy
+- todo-comments.nvim 1.62ms 📅 VimEnter
+- which-key.nvim 1.13ms 📅 VimEnter
+
+## QOL Improvements
+
+There are a few quality of life improvements that are not generally known. Namely:
+
+```lua
+-- nvim-surround
+vim.keymap.set("x", "(", "S)", { remap = true })
+vim.keymap.set("x", ")", "S)", { remap = true })
+vim.keymap.set("x", "\[", "S]", { remap = true })
+vim.keymap.set("x", "]", "S]", { remap = true })
+vim.keymap.set("x", "{", "S}", { remap = true })
+vim.keymap.set("x", "}", "S}", { remap = true })
+vim.keymap.set("x", '"', 'S"', { remap = true })
+```
+What this does is allow to easily surround text with parenthesis and/or quotes. You just select the text (with visual mode) and then press the parenthesis key (in normal mode!). It requires the [nvim-surround](https://github.com/kylechui/nvim-surround) plugin.
+
+And this in the treesitter config:
+
+```lua
+-- nvim-treesitter
+incremental_selection = {
+        enable = true,
+        keymaps = {
+          node_incremental = 'v',
+          node_decremental = 'V',
+        },
+      },
+```
+
+This allows you to select a node/block and then press `v` to select the next node/block. Extremely useful!
+
+
+## To Do
+
+- I don't like how this is currently structured. I have added plugins to /lua/custom/plugins/init.lua. However, I also made several edits to the default plugins in their default files. I may want to move all the plugins to 1 folder/file only. But I am not too bothered by that for now.
+
+----
+
+## Original README
+
+What follows is the original README.
+
 # kickstart-modular.nvim
 
 ## Introduction

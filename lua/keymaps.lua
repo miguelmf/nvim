@@ -31,6 +31,18 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- vim.keymap.set('n', '<leader>s', function()
+--   require('mini.jump2d').start(require('mini.jump2d').builtin_opts.word_start)
+-- end, { desc = 'Jump to start of words' })
+
+vim.keymap.set('n', '<C-s>', function()
+  require('mini.jump2d').start(require('mini.jump2d').builtin_opts.word_start)
+end, { desc = 'Jump to start of words' })
+
+-- vim.keymap.set('n', '<CR>', function()
+--   require('mini.jump2d').start(require('mini.jump2d').builtin_opts.word_start)
+-- end, { desc = 'Jump to start of words' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -52,3 +64,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- vim: ts=2 sts=2 sw=2 et
+
+-- nvim-surround
+vim.keymap.set('x', '(', 'S)', { remap = true })
+vim.keymap.set('x', ')', 'S)', { remap = true })
+vim.keymap.set('x', '[', 'S]', { remap = true })
+vim.keymap.set('x', ']', 'S]', { remap = true })
+vim.keymap.set('x', '{', 'S}', { remap = true })
+vim.keymap.set('x', '}', 'S}', { remap = true })
+vim.keymap.set('x', '"', 'S"', { remap = true })

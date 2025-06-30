@@ -46,6 +46,9 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Show only 1 status bar across the entire window (not per window)
+vim.o.laststatus = 3
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -64,7 +67,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 15
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -72,3 +75,40 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- vim: ts=2 sts=2 sw=2 et
+
+-- When editing a file, always jump to the last known cursor position.
+-- Don't do it when the position is invalid, when inside an event handler
+-- (happens when dropping a file on gvim) and for a commit message (it's
+-- likely a different one than last time).
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function(args)
+    local valid_line = vim.fn.line [['"]] >= 1 and vim.fn.line [['"]] < vim.fn.line '$'
+    local not_commit = vim.b[args.buf].filetype ~= 'commit'
+
+    if valid_line and not_commit then
+      vim.cmd [[normal! g`"]]
+    end
+  end,
+})
+
+if vim.g.neovide then
+  -- vim.o.guifont = "Jetbrains Mono Regular:h16"
+  -- vim.o.guifont = "Iosevka Nerd Font Mono:h16"
+  -- vim.o.guifont = "JetBrains Mono Light:h16"
+  -- vim.o.guifont = "VictorMono Nerd Font:h16"
+  vim.o.guifont = 'Cascadia Code SemiLight:h16.5'
+  -- vim.o.guifont = "Mononoki Nerd Font:h16"
+  -- vim.o.guifont = "FiraCode Nerd Font Mono Light:h16"
+
+  -- set guifont=Cascadia\\ Code\\ SemiLight:h16
+  -- vim.cmd("set guifont=Cascadia\\ Code\\ Light:h16")
+  -- vim.o.guifont = "Cascadia Code Light:h16"
+  -- vim.o.guifont = "VictorMono Nerd Regular:h24"
+  -- vim.g.neovide_cursor_vfx_mode = ""
+  -- vim.g.neovide_cursor_animation_length = 0
+  -- vim.g.neovide_scroll_animation_length = 0
+end
+
+vim.g.neovide_cursor_vfx_mode = ''
+vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_scroll_animation_length = 0
