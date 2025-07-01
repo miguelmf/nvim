@@ -19,6 +19,7 @@ return {
 
   {
     'supermaven-inc/supermaven-nvim',
+    event = 'VeryLazy',
     config = function()
       require('supermaven-nvim').setup {
         keymaps = {
@@ -84,6 +85,7 @@ return {
   {
     'echasnovski/mini.jump2d',
     version = '*',
+    event = 'VeryLazy',
     config = function()
       require('mini.jump2d').setup {
 
@@ -110,6 +112,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup {
@@ -122,6 +125,7 @@ return {
 
   {
     'renerocksai/telekasten.nvim',
+    event = 'VeryLazy',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = function()
       require('telekasten').setup {
@@ -179,10 +183,6 @@ return {
   },
 
   {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = { 'OXY2DEV/markview.nvim' },
-  },
-  {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = true,
@@ -193,6 +193,7 @@ return {
   {
     'echasnovski/mini.bufremove',
     version = '*',
+    event = 'VeryLazy',
 
     config = function()
       require('mini.bufremove').setup {}
