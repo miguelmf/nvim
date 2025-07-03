@@ -8,44 +8,42 @@ Anyhow, this is my new Neovim config. I forked [kickstart-modular.nvim](https://
 
 Here is a full list of the plugins I use.
 
-- AniMotion.nvim 0.81ms 📅 VeryLazy
-- blink.cmp 18.39ms 🔌 nvim-lspconfig
-- conform.nvim 5.92ms 📅 BufWritePre
-- darcubox-nvim 9.83ms 🚀 start
-- fidget.nvim 7.91ms 🔌 nvim-lspconfig
-- friendly-snippets 13.31ms 🔌 LuaSnip
-- gitsigns.nvim 1.46ms 🚀 start
-- grug-far.nvim 0.84ms 🚀 start
-- guess-indent.nvim 0.05ms 🚀 start
-- lazy.nvim 5.19ms 📄 init.lua
-- lazydev.nvim 0.43ms 🔌 blink.cmp
-- lualine.nvim 9.29ms 🚀 start
-- LuaSnip 15.37ms 🔌 blink.cmp
-- markview.nvim 10.29ms 🔌 nvim-treesitter
-- mason-lspconfig.nvim 0.22ms 🔌 nvim-lspconfig
-- mason-tool-installer.nvim 0.38ms 🔌 nvim-lspconfig
-- mason.nvim 3.54ms 🔌 nvim-lspconfig
-- mini.jump2d 0.51ms 🚀 start
-● mini.bufremove 0.86ms 🚀 start
-- no-neck-pain.nvim 1.41ms 🚀 start
-- noice.nvim 1.77ms 📅 VeryLazy
-● nvim-autopairs 6.98ms 📅 InsertEnter
-- nui.nvim 0.34ms 🔌 noice.nvim
-- nvim-colorizer.lua 1.4ms 📅 BufReadPre
-- nvim-lspconfig 76.91ms 🚀 start
-- nvim-notify 0.29ms 🔌 noice.nvim
-- nvim-surround 2.94ms 📅 VeryLazy
-- nvim-treesitter 14.96ms 🚀 start
-- plenary.nvim 0.33ms 🔌 telescope.nvim
-- scrollEOF.nvim 0.7ms 📅 CursorMoved
-- supermaven-nvim 4.66ms 🚀 start
-- telekasten.nvim 23.05ms 🚀 start
-- telescope-fzf-native.nvim 0.25ms 🔌 telescope.nvim
-- telescope-ui-select.nvim 0.27ms 🔌 telescope.nvim
-- telescope.nvim 11.55ms 🔌 telekasten.nvim
-- tiny-inline-diagnostic.nvim 2.42ms 📅 VeryLazy
-- todo-comments.nvim 1.62ms 📅 VimEnter
-- which-key.nvim 1.13ms 📅 VimEnter
+- AniMotion.nvim 2.2ms 📅 VeryLazy
+- blink.cmp 52.33ms 🔌 nvim-lspconfig
+- darcubox-nvim 5.18ms 🚀 start
+- fidget.nvim 24.24ms 🔌 nvim-lspconfig
+- friendly-snippets 33.01ms 🔌 LuaSnip
+- gitsigns.nvim 6.44ms 🚀 start
+- grug-far.nvim 2.67ms 🚀 start
+- guess-indent.nvim 0.07ms 🚀 start
+- lazy.nvim 13.7ms 📄 init.lua
+- lazydev.nvim 1.52ms 🔌 blink.cmp
+- lualine.nvim 11.27ms 📅 VeryLazy
+- LuaSnip 37.52ms 🔌 blink.cmp
+- mason-lspconfig.nvim 0.14ms 🔌 nvim-lspconfig
+- mason-tool-installer.nvim 1.28ms 🔌 nvim-lspconfig
+- mason.nvim 7.95ms 🔌 nvim-lspconfig
+- mini.bufremove 0.66ms 📅 VeryLazy
+- mini.jump2d 1.24ms 📅 VeryLazy
+- no-neck-pain.nvim 6.25ms 🚀 start
+- noice.nvim 3.8ms 📅 VeryLazy
+- nui.nvim 0.28ms 🔌 noice.nvim
+- nvim-lspconfig 147.32ms 🚀 start
+- nvim-notify 0.26ms 🔌 noice.nvim
+- nvim-surround 2.47ms 📅 VeryLazy
+- nvim-treesitter 19.82ms 🚀 start
+- plenary.nvim 1.67ms 🔌 telescope.nvim
+- scrollEOF.nvim 2.54ms 📅 WinScrolled
+- supermaven-nvim 8.31ms 📅 VeryLazy
+- telekasten.nvim 39.79ms 📅 VeryLazy
+- telescope-fzf-native.nvim 0.31ms 🔌 telescope.nvim
+- telescope-hierarchy.nvim 0.19ms 🔌 telescope.nvim
+- telescope-ui-select.nvim 0.38ms 🔌 telescope.nvim
+- telescope-undo.nvim 0.19ms 🔌 telescope.nvim
+- telescope.nvim 27.75ms 📅 VimEnter
+- tiny-inline-diagnostic.nvim 7.08ms 📅 VeryLazy
+- todo-comments.nvim 3.22ms 📅 VimEnter
+- which-key.nvim 1.56ms 📅 VimEnter
 
 ## QOL Improvements
 
@@ -55,7 +53,7 @@ There are a few quality of life improvements that are not generally known. Namel
 -- nvim-surround
 vim.keymap.set("x", "(", "S)", { remap = true })
 vim.keymap.set("x", ")", "S)", { remap = true })
-vim.keymap.set("x", "\[", "S]", { remap = true })
+vim.keymap.set("x", "[", "S]", { remap = true })
 vim.keymap.set("x", "]", "S]", { remap = true })
 vim.keymap.set("x", "{", "S}", { remap = true })
 vim.keymap.set("x", "}", "S}", { remap = true })
