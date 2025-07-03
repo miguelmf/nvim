@@ -28,6 +28,8 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'debugloop/telescope-undo.nvim' },
+      { 'jmacadie/telescope-hierarchy.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -83,13 +85,25 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          undo = {
+            side_by_side = true,
+            layout_strategy = 'vertical',
+            layout_config = {
+              width = 100,
+              height = 100,
+              preview_cutoff = 1,
+              -- mirror = true, -- This would make the preview window in the bottom
+              preview_height = 0.7,
+            },
+          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-
+      pcall(require('telescope').load_extension, 'undo')
+      pcall(require('telescope').load_extension, 'hierarchy') -- See https://github.com/bassamsdata/namu.nvim as it might be more powerful?
       -- See `:help telescope.builtin`
 
       local builtin = require 'telescope.builtin'
@@ -104,6 +118,9 @@ return {
       vim.keymap.set('n', '<leader>tr', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<Tab>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>tu', '<cmd>Telescope undo<cr>')
+      vim.keymap.set('n', '<leader>thi', '<cmd>Telescope hierarchy incoming_calls<cr>')
+      vim.keymap.set('n', '<leader>tho', '<cmd>Telescope hierarchy outgoing_calls<cr>')
 
       -- Slightly advanced example of overriding default behavior and theme
       -- vim.keymap.set('n', '<leader>/', function()
