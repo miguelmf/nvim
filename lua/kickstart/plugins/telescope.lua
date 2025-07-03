@@ -89,8 +89,6 @@ return {
             side_by_side = true,
             layout_strategy = 'vertical',
             layout_config = {
-              width = 100,
-              height = 100,
               preview_cutoff = 1,
               -- mirror = true, -- This would make the preview window in the bottom
               preview_height = 0.7,
