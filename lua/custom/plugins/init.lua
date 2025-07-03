@@ -151,7 +151,11 @@ return {
   {
     'luiscassih/AniMotion.nvim',
     event = 'VeryLazy',
-    config = true,
+    config = function()
+      require('AniMotion').setup {
+        clear_keys = {}, -- disable <Esc> key so it won't override my "remove search highlight" mapping
+      }
+    end,
   },
 
   -- {
