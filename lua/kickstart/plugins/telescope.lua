@@ -86,9 +86,14 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           undo = {
+            vim_diff_opts = {
+              -- ctxlen = vim.o.scrolloff,
+              ctxlen = 1,
+            },
             side_by_side = true,
             layout_strategy = 'vertical',
             layout_config = {
+              height = 100,
               preview_cutoff = 1,
               -- mirror = true, -- This would make the preview window in the bottom
               preview_height = 0.7,
