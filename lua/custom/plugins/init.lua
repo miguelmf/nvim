@@ -10,29 +10,30 @@ return {
         colors = {
           bg = '#060808',
           fg = '#B9b9b2',
-          selection = '#273434',
+          selection = '#1c2525',
           comment = '#6272A4',
           red = '#FF5555',
           orange = '#FFB86C',
-          yellow = '#F1FA8C',
-          green = '#50fa7b',
+          yellow = '#CFC88D',
+          green = '#7ACB88',
           purple = '#BD93F9',
-          cyan = '#8BE9FD',
+          cyan = '#6fbaca',
           pink = '#FF79C6',
 
           bright_red = '#FF6E6E',
-          bright_green = '#69FF94',
-          bright_yellow = '#F5F5A5', -- toned down from #FFFFA5
-          bright_blue = '#CBB5FF', -- less bright than #D6ACFF
-          bright_magenta = '#F2A8D5', -- softer than #FF92DF
-          bright_cyan = '#B8FFFF', -- softer than #A4FFFF
-          bright_white = '#DADADA', -- offwhite instead of pure white
+          bright_green = '#9ADF94',
+          -- bright_yellow = '#F5F5A5',
+          bright_yellow = '#DAD39A',
+          bright_blue = '#CBB5FF',
+          bright_magenta = '#F2A8D5',
+          bright_cyan = '#A3D4D4',
+          bright_white = '#DADADA',
 
           menu = '#21222C',
           visual = '#3E4452',
           gutter_fg = '#4B5263',
           nontext = '#3B4048',
-          white = '#CCCCCC', -- softened from #ABB2BF
+          white = '#CCCCCC',
           black = '#191A21',
         },
         -- show the '~' characters after the end of buffers
@@ -138,13 +139,14 @@ return {
     event = 'VeryLazy',
     config = function()
       require('mini.jump2d').setup {
-
+        silent = true,
         view = {
           dim = true,
           n_steps_ahead = 2,
         },
       }
       vim.keymap.del('n', '<CR>')
+      vim.keymap.del('v', '<CR>')
 
       vim.api.nvim_set_hl(0, 'MiniJump2dSpot', {
         fg = '#00e34f',
