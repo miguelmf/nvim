@@ -10,8 +10,8 @@ Here is a full list of the plugins I use.
 
 - AniMotion.nvim 2.2ms 📅 VeryLazy
 - blink.cmp 52.33ms 🔌 nvim-lspconfig
-- darcubox-nvim 5.18ms 🚀 start
 - fidget.nvim 24.24ms 🔌 nvim-lspconfig
+- dracula.nvim 3.5ms 🚀 start
 - friendly-snippets 33.01ms 🔌 LuaSnip
 - gitsigns.nvim 6.44ms 🚀 start
 - grug-far.nvim 2.67ms 🚀 start
