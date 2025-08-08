@@ -73,11 +73,11 @@ return {
   {
     'supermaven-inc/supermaven-nvim',
     event = 'VeryLazy',
+    -- enabled = false,
     config = function()
       require('supermaven-nvim').setup {
         keymaps = {
-          -- accept_suggestion = '<Tab>',
-          accept_suggestion = '<Right>',
+          accept_suggestion = '<C-l>',
           clear_suggestion = '<C-]>',
           accept_word = '<C-j>',
         },
@@ -109,7 +109,32 @@ return {
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
-    opts = {},
+    -- opts = {
+    -- lsp = {
+    --   -- override = {
+    --   --   ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+    --   --   ['vim.lsp.util.stylize_markdown'] = true,
+    --   -- },
+    --   signature = {
+    --     enabled = false,
+    --   },
+    -- presets = {
+    --   lsp_doc_border = false, -- add a border to hover docs and signature help
+    -- },
+    -- },
+    -- opts = {},
+    config = function()
+      require('noice').setup {
+        lsp = {
+          signature = {
+            enabled = false,
+          },
+          presets = {
+            lsp_doc_border = true, -- add a border to hover docs and signature help
+          },
+        },
+      }
+    end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
@@ -188,6 +213,7 @@ return {
         require('telekasten').search_notes { default_text = '' }
       end, { desc = 'Search/Grep in notes (Telekasten)' })
       vim.keymap.set('n', '<leader>nf', '<cmd>Telekasten find_notes<CR>')
+      vim.keymap.set('n', '<leader>nn', '<cmd>Telekasten new_note<CR>')
     end,
   },
 
@@ -212,17 +238,41 @@ return {
     end,
   },
 
-  -- {
-  --   'stevearc/oil.nvim',
-  --   ---@module 'oil'
-  --   ---@type oil.SetupOpts
-  --   opts = {},
-  --   -- Optional dependencies
-  --   -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
-  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-  --   lazy = false,
-  -- },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+      keymaps = {
+        ['<Esc>'] = { 'actions.close', mode = 'n' },
+      },
+      float = {
+        -- Padding around the floating window
+        padding = 2,
+        -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+        max_width = 0.5,
+        max_height = 0.5,
+        border = 'rounded',
+        win_options = {
+          winblend = 0,
+        },
+        -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
+        get_win_title = nil,
+        -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+        preview_split = 'auto',
+        -- This is the config that will be passed to nvim_open_win.
+        -- Change values here to customize the layout
+        override = function(conf)
+          return conf
+        end,
+      },
+    },
+    -- Optional dependencies
+    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+  },
 
   {
     'MagicDuck/grug-far.nvim',
@@ -256,4 +306,26 @@ return {
       vim.keymap.set('n', '<C-q>', require('mini.bufremove').delete, { desc = 'Delete buffer' })
     end,
   },
+
+  {
+    'ethanholz/nvim-lastplace',
+    config = function()
+      require('nvim-lastplace').setup {
+        lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+        lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+      }
+    end,
+  },
+  -- {
+  --   'augmentcode/augment.vim',
+  --   enabled = false,
+  --   init = function()
+  --     -- Disable default <Tab> mapping
+  --     vim.g.augment_disable_tab_mapping = true
+  --   end,
+  --   config = function()
+  --     -- Map <C-l> to accept suggestions
+  --     vim.keymap.set('i', '<C-l>', '<cmd>call augment#Accept()<CR>', { noremap = true, silent = true })
+  --   end,
+  -- },
 }

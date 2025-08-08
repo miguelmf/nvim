@@ -73,3 +73,15 @@ vim.keymap.set('x', ']', 'S]', { remap = true })
 vim.keymap.set('x', '{', 'S}', { remap = true })
 vim.keymap.set('x', '}', 'S}', { remap = true })
 vim.keymap.set('x', '"', 'S"', { remap = true })
+
+-- Paste over word without yanking
+vim.keymap.set('n', '<leader>p', [["_diw"+P]], { desc = 'Paste over word without yanking' })
+
+-- to-do comments
+vim.keymap.set('n', '<leader>tx', ':TodoTelescope<CR>', { desc = 'To-do comments' })
+
+-- LSP
+vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'LSP Signature Help (insert mode)' })
+
+-- Oil
+vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory (Oil)' })

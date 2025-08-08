@@ -1,0 +1,22 @@
+{
+  "Anki Basic Card": {
+    "prefix": "anki",
+    "body": [
+      "# Note",
+      "",
+      "model: Basic",
+      "tags: ${1:tag1, tag2}",
+      "deck: ${2:myDeckName}",
+      "",
+      "## Front",
+      "",
+      "${3:Front of the card text here}",
+      "",
+      "## Back",
+      "",
+      "${4:Back of the card text here}",
+      ""
+    ],
+    "description": "Create a new Anki Basic card"
+  }
+}
