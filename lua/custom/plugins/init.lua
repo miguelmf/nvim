@@ -59,7 +59,7 @@ return {
         --   }
         -- end,
       }
-      vim.cmd 'colorscheme dracula'
+      -- vim.cmd 'colorscheme dracula'
     end,
   },
 
@@ -201,6 +201,41 @@ return {
   },
 
   {
+    'ellisonleao/gruvbox.nvim',
+    config = function()
+      require('gruvbox').setup {
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = 'hard', -- can be "hard", "soft" or empty string
+        -- overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+        palette_overrides = {},
+        overrides = {
+          Normal = { bg = '#060808' },
+          GruvboxFg1 = { fg = '#d5c4a1' },
+          -- Comment = { fg = '#FF1111' },
+        },
+      }
+      vim.cmd 'colorscheme gruvbox'
+    end,
+  },
+
+  {
     'renerocksai/telekasten.nvim',
     event = 'VeryLazy',
     dependencies = { 'nvim-telescope/telescope.nvim' },
@@ -235,43 +270,8 @@ return {
       require('AniMotion').setup {
         clear_keys = {}, -- disable <Esc> key so it won't override my "remove search highlight" mapping
       }
+      -- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
     end,
-  },
-
-  {
-    'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {
-      keymaps = {
-        ['<Esc>'] = { 'actions.close', mode = 'n' },
-      },
-      float = {
-        -- Padding around the floating window
-        padding = 2,
-        -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-        max_width = 0.5,
-        max_height = 0.5,
-        border = 'rounded',
-        win_options = {
-          winblend = 0,
-        },
-        -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
-        get_win_title = nil,
-        -- preview_split: Split direction: "auto", "left", "right", "above", "below".
-        preview_split = 'auto',
-        -- This is the config that will be passed to nvim_open_win.
-        -- Change values here to customize the layout
-        override = function(conf)
-          return conf
-        end,
-      },
-    },
-    -- Optional dependencies
-    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    lazy = false,
   },
 
   {
@@ -328,4 +328,65 @@ return {
   --     vim.keymap.set('i', '<C-l>', '<cmd>call augment#Accept()<CR>', { noremap = true, silent = true })
   --   end,
   -- },
+
+  -- {
+  --   'barrett-ruth/live-server.nvim',
+  --   build = 'pnpm add -g live-server',
+  --   cmd = { 'LiveServerStart', 'LiveServerStop' },
+  --   config = true,
+  -- },
+
+  {
+    'windwp/nvim-ts-autotag',
+  },
+  {
+    'A7Lavinraj/fyler.nvim',
+    dependencies = { 'nvim-mini/mini.icons' },
+    opts = {
+      mappings = {
+        ['q'] = 'CloseView',
+        ['<Esc>'] = 'CloseView',
+        ['<CR>'] = 'Select',
+        ['<C-t>'] = 'SelectTab',
+        ['|'] = 'SelectVSplit',
+        ['-'] = 'SelectSplit',
+        ['^'] = 'GotoParent',
+        ['='] = 'GotoCwd',
+        ['.'] = 'GotoNode',
+      },
+      icon_provider = 'mini_icons',
+      win = {
+        border = 'single',
+        kind_presets = {
+          float = {
+            height = '0.5rel',
+            width = '0.5rel',
+            top = '0.1rel',
+            left = '0.20rel',
+          },
+        },
+      },
+      views = {},
+    },
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
 }

@@ -40,7 +40,9 @@ vim.o.signcolumn = 'yes'
 vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
+-- vim.o.timeoutlen = 300
+vim.o.timeoutlen = 1
+vim.o.ttimeoutlen = 1
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -67,7 +69,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 15
+vim.o.scrolloff = 12
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -90,3 +92,10 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
 end
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+-- vim.opt.expandtab = true
+
+vim.opt.diffopt = 'inline:char'

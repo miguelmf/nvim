@@ -83,5 +83,5 @@ vim.keymap.set('n', '<leader>tx', ':TodoTelescope<CR>', { desc = 'To-do comments
 -- LSP
 vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'LSP Signature Help (insert mode)' })
 
--- Oil
-vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory (Oil)' })
+-- Fyler
+vim.keymap.set('n', '\\', '<cmd>Fyler kind=float<cr>', { desc = 'Fyler' })

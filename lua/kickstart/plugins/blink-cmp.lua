@@ -33,6 +33,7 @@ return {
         opts = {},
       },
       'folke/lazydev.nvim',
+      -- 'xieyonn/blink-cmp-dat-word',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -88,6 +89,7 @@ return {
       },
 
       sources = {
+        -- default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'datword' },
         default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
         -- default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
@@ -101,6 +103,18 @@ return {
               end, items)
             end,
           },
+
+          -- datword = {
+          --   name = 'DatWord',
+          --   score_offset = -5,
+          --   module = 'blink-cmp-dat-word',
+          --   opts = {
+          --     paths = {
+          --       -- "path_to_your_words.txt", -- add your owned word files before dictionary.
+          --       '/usr/share/dict/words', -- This file is included by default on Linux/macOS.
+          --     },
+          --   },
+          -- },
         },
         min_keyword_length = 2,
       },
@@ -114,7 +128,8 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      -- fuzzy = { implementation = 'lua' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = false },
