@@ -8,42 +8,52 @@ Anyhow, this is my new Neovim config. I forked [kickstart-modular.nvim](https://
 
 Here is a full list of the plugins I use.
 
-- AniMotion.nvim 2.2ms 📅 VeryLazy
-- blink.cmp 52.33ms 🔌 nvim-lspconfig
-- fidget.nvim 24.24ms 🔌 nvim-lspconfig
-- dracula.nvim 3.5ms 🚀 start
-- friendly-snippets 33.01ms 🔌 LuaSnip
-- gitsigns.nvim 6.44ms 🚀 start
-- grug-far.nvim 2.67ms 🚀 start
-- guess-indent.nvim 0.07ms 🚀 start
-- lazy.nvim 13.7ms 📄 init.lua
-- lazydev.nvim 1.52ms 🔌 blink.cmp
-- lualine.nvim 11.27ms 📅 VeryLazy
-- LuaSnip 37.52ms 🔌 blink.cmp
-- mason-lspconfig.nvim 0.14ms 🔌 nvim-lspconfig
-- mason-tool-installer.nvim 1.28ms 🔌 nvim-lspconfig
-- mason.nvim 7.95ms 🔌 nvim-lspconfig
-- mini.bufremove 0.66ms 📅 VeryLazy
-- mini.jump2d 1.24ms 📅 VeryLazy
-- no-neck-pain.nvim 6.25ms 🚀 start
-- noice.nvim 3.8ms 📅 VeryLazy
-- nui.nvim 0.28ms 🔌 noice.nvim
-- nvim-lspconfig 147.32ms 🚀 start
-- nvim-notify 0.26ms 🔌 noice.nvim
-- nvim-surround 2.47ms 📅 VeryLazy
-- nvim-treesitter 19.82ms 🚀 start
-- plenary.nvim 1.67ms 🔌 telescope.nvim
-- scrollEOF.nvim 2.54ms 📅 WinScrolled
-- supermaven-nvim 8.31ms 📅 VeryLazy
-- telekasten.nvim 39.79ms 📅 VeryLazy
-- telescope-fzf-native.nvim 0.31ms 🔌 telescope.nvim
-- telescope-hierarchy.nvim 0.19ms 🔌 telescope.nvim
-- telescope-ui-select.nvim 0.38ms 🔌 telescope.nvim
-- telescope-undo.nvim 0.19ms 🔌 telescope.nvim
-- telescope.nvim 27.75ms 📅 VimEnter
-- tiny-inline-diagnostic.nvim 7.08ms 📅 VeryLazy
-- todo-comments.nvim 3.22ms 📅 VimEnter
-- which-key.nvim 1.56ms 📅 VimEnter
+- AniMotion.nvim
+- blink.cmp
+- dracula.nvim
+- fidget.nvim
+- friendly-snippets
+- fyler.nvim
+- gitsigns.nvim
+- grug-far.nvim
+- gruvbox.nvim
+- guess-indent.nvim
+- lazy.nvim
+- lazydev.nvim
+- lualine.nvim
+- LuaSnip
+- mason-lspconfig.nvim
+- mason-tool-installer.nvim
+- mason.nvim
+- mini.bufremove
+- mini.icons
+- mini.jump2d
+- no-neck-pain.nvim
+- noice.nvim
+- nui.nvim
+- nvim-colorizer.lua
+- nvim-lastplace
+- nvim-lspconfig
+- nvim-notify
+- nvim-surround
+- nvim-treesitter
+- nvim-ts-autotag
+- plenary.nvim
+- scrollEOF.nvim
+- supermaven-nvim
+- telekasten.nvim
+- telescope-fzf-native.nvim
+- telescope-hierarchy.nvim
+- telescope-ui-select.nvim
+- telescope-undo.nvim
+- telescope.nvim
+- tiny-inline-diagnostic.nvim
+- todo-comments.nvim
+- which-key.nvim
+- conform.nvim
+- lazygit.nvim
+- nvim-autopairs
+- nvim-web-devicons
 
 ## QOL Improvements
 
