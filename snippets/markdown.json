@@ -18,5 +18,37 @@
       ""
     ],
     "description": "Create a new Anki Basic card"
+  },
+
+  "Anki Basic Card 2": {
+    "prefix": "aa",
+    "body": [
+      "# Note",
+      "",
+      "model: Basic",
+      "tags: ${1:tag1}",
+      "deck: all",
+      "",
+      "## Front",
+      "",
+      "${2:question}",
+      "",
+      "## Back",
+      "",
+      "${3:answer}",
+      "",
+      "<!-- --- -->",
+      "",
+      ""
+    ],
+    "description": "Create a new Anki Basic card for the 'all' deck"
+  },
+
+  "html highlight span": {
+    "prefix": "hi",
+    "body": [
+      "<span class=\"highlight\">$1</span>"
+    ],
+    "description": "Wrap highlighted text in a span with the highlight class"
   }
 }

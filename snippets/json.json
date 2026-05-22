@@ -1,0 +1,14 @@
+{
+  "links json (wander)": {
+    "prefix": "newLink",
+    "body": [
+      "{",
+      "  \"name\": \"${1:name}\",",
+      "  \"url\": \"${2:url}\",",
+      "  \"tags\": [\"${3:tag1}\", \"${4:tag2}\"],",
+      "  \"description\": \"${5:description}\"",
+      "}"
+    ],
+    "description": "Create a new link entry."
+  }
+}

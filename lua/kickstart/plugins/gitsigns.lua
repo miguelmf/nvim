@@ -24,7 +24,21 @@ return {
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      word_diff = true,
+
+      preview_config = {
+        -- Options passed to nvim_open_win
+        style = 'minimal',
+        relative = 'cursor',
+        row = 0,
+        col = 1,
+      },
+
       on_attach = function(bufnr)
+        vim.cmd [[ hi GitSignsChangeLn guibg=#004e00 ctermbg=235 ]]
+        vim.cmd [[ hi GitSignsAddLnInline guibg=#004e00 ctermbg=107 ]]
+        vim.cmd [[ hi GitSignsChangeLnInline guibg=#004e00 ctermbg=167 ]]
+
         local gitsigns = require 'gitsigns'
 
         local function map(mode, l, r, opts)

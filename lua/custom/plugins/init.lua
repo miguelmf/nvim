@@ -4,71 +4,34 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'Mofiqul/dracula.nvim',
-    config = function()
-      require('dracula').setup {
-        colors = {
-          bg = '#060808',
-          fg = '#B9b9b2',
-          selection = '#1c2525',
-          comment = '#6272A4',
-          red = '#FF5555',
-          orange = '#FFB86C',
-          yellow = '#CFC88D',
-          green = '#7ACB88',
-          purple = '#BD93F9',
-          cyan = '#6fbaca',
-          pink = '#FF79C6',
-
-          bright_red = '#FF6E6E',
-          bright_green = '#9ADF94',
-          -- bright_yellow = '#F5F5A5',
-          bright_yellow = '#DAD39A',
-          bright_blue = '#CBB5FF',
-          bright_magenta = '#F2A8D5',
-          bright_cyan = '#A3D4D4',
-          bright_white = '#DADADA',
-
-          menu = '#21222C',
-          visual = '#3E4452',
-          gutter_fg = '#4B5263',
-          nontext = '#3B4048',
-          white = '#CCCCCC',
-          black = '#191A21',
-        },
-        -- show the '~' characters after the end of buffers
-        show_end_of_buffer = true, -- default false
-        -- use transparent background
-        -- transparent_bg = true, -- default false
-        -- set custom lualine background color
-        lualine_bg_color = '#44475a', -- default nil
-        -- set italic comment
-        italic_comment = true, -- default false
-        -- overrides the default highlights with table see `:h synIDattr`
-        overrides = {},
-        -- You can use overrides as table like this
-        -- overrides = {
-        --   NonText = { fg = "white" }, -- set NonText fg to white
-        --   NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-        --   Nothing = {} -- clear highlight of Nothing
-        -- },
-        -- Or you can also use it like a function to get color from theme
-        -- overrides = function (colors)
-        --   return {
-        --     NonText = { fg = colors.white }, -- set NonText fg to white of theme
-        --   }
-        -- end,
-      }
-      -- vim.cmd 'colorscheme dracula'
-    end,
-  },
-
-  { 'shortcuts/no-neck-pain.nvim', opts = {
-    autocmds = {
-      enableOnTabEnter = true,
-      enableOnVimEnter = true,
+    'shortcuts/no-neck-pain.nvim',
+    opts = {
+      autocmds = {
+        enableOnTabEnter = true,
+        enableOnVimEnter = true,
+      },
+      -- buffers = {
+      --   right = {
+      --     enabled = true,
+      --     -- width = 150,
+      --   },
+      --   left = {
+      --     enabled = false,
+      --   },
+      -- },
+      -- width = 115,
+      --@type table
+      -- integrations = {
+      --   NeoTree = {
+      --     -- The position of the tree.
+      --     --@type "left"|"right"
+      --     position = 'left',
+      --     -- When `true`, if the tree was opened before enabling the plugin, we will reopen it.
+      --     reopen = true,
+      --   },
+      -- },
     },
-  } },
+  },
 
   {
     'supermaven-inc/supermaven-nvim',
@@ -143,6 +106,8 @@ return {
       --   If not available, we use `mini` as the fallback
       'rcarriga/nvim-notify',
     },
+    -- Fixes annoying notify background warning.
+    vim.api.nvim_set_hl(0, 'NotifyBackground', { bg = '#000000' }),
   },
 
   {
@@ -242,6 +207,7 @@ return {
     config = function()
       require('telekasten').setup {
         home = vim.fn.expand '~/priv/docs/synced_phone/notes/',
+        -- picker = 'snacks',
       }
       -- vim.keymap.set('n', '<leader>zg', '<cmd>Telekasten search_notes<CR>')
       vim.keymap.set('n', '<leader>n/', function()
@@ -343,30 +309,33 @@ return {
     'A7Lavinraj/fyler.nvim',
     dependencies = { 'nvim-mini/mini.icons' },
     opts = {
-      mappings = {
-        ['q'] = 'CloseView',
-        ['<Esc>'] = 'CloseView',
-        ['<CR>'] = 'Select',
-        ['<C-t>'] = 'SelectTab',
-        ['|'] = 'SelectVSplit',
-        ['-'] = 'SelectSplit',
-        ['^'] = 'GotoParent',
-        ['='] = 'GotoCwd',
-        ['.'] = 'GotoNode',
-      },
-      icon_provider = 'mini_icons',
-      win = {
-        border = 'single',
-        kind_presets = {
-          float = {
-            height = '0.5rel',
-            width = '0.5rel',
-            top = '0.1rel',
-            left = '0.20rel',
+      views = {
+        finder = {
+          mappings = {
+            ['q'] = 'CloseView',
+            ['<Esc>'] = 'CloseView',
+            ['<CR>'] = 'Select',
+            ['<C-t>'] = 'SelectTab',
+            ['|'] = 'SelectVSplit',
+            ['-'] = 'SelectSplit',
+            ['^'] = 'GotoParent',
+            ['='] = 'GotoCwd',
+            ['.'] = 'GotoNode',
+          },
+
+          win = {
+            border = 'single',
+            kinds = {
+              float = {
+                height = '50%',
+                width = '50%',
+                top = '10%',
+                left = '25%',
+              },
+            },
           },
         },
       },
-      views = {},
     },
   },
   {
@@ -388,5 +357,261 @@ return {
     keys = {
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
+  },
+
+  {
+    'karb94/neoscroll.nvim',
+    enabled = false,
+    opts = {},
+  },
+
+  {
+    'esmuellert/codediff.nvim',
+    -- enabled = false,
+    cmd = 'CodeDiff',
+    opts = {
+      -- Highlight configuration
+      highlights = {
+        -- Line-level: accepts highlight group names or hex colors (e.g., "#2ea043")
+        -- line_insert = 'DiffAdd', -- Line-level insertions
+        line_insert = '#006b00', -- Line-level insertions
+        line_delete = 'DiffDelete', -- Line-level deletions
+
+        -- Character-level: accepts highlight group names or hex colors
+        -- If specified, these override char_brightness calculation
+        char_insert = nil, -- Character-level insertions (nil = auto-derive)
+        char_delete = nil, -- Character-level deletions (nil = auto-derive)
+
+        -- Brightness multiplier (only used when char_insert/char_delete are nil)
+        -- nil = auto-detect based on background (1.4 for dark, 0.92 for light)
+        char_brightness = nil, -- Auto-adjust based on your colorscheme
+
+        -- Conflict sign highlights (for merge conflict views)
+        -- Accepts highlight group names or hex colors (e.g., "#f0883e")
+        -- nil = use default fallback chain
+        conflict_sign = nil, -- Unresolved: DiagnosticSignWarn -> #f0883e
+        conflict_sign_resolved = nil, -- Resolved: Comment -> #6e7681
+        conflict_sign_accepted = nil, -- Accepted: GitSignsAdd -> DiagnosticSignOk -> #3fb950
+        conflict_sign_rejected = nil, -- Rejected: GitSignsDelete -> DiagnosticSignError -> #f85149
+      },
+
+      -- Diff view behavior
+      diff = {
+        -- layout = 'side-by-side', -- Diff layout: "side-by-side" (two panes) or "inline" (single pane with virtual lines)
+        layout = 'inline', -- Diff layout: "side-by-side" (two panes) or "inline" (single pane with virtual lines)
+        disable_inlay_hints = true, -- Disable inlay hints in diff windows for cleaner view
+        max_computation_time_ms = 5000, -- Maximum time for diff computation (VSCode default)
+        ignore_trim_whitespace = false, -- Ignore leading/trailing whitespace changes (like diffopt+=iwhite)
+        hide_merge_artifacts = false, -- Hide merge tool temp files (*.orig, *.BACKUP.*, *.BASE.*, *.LOCAL.*, *.REMOTE.*)
+        original_position = 'left', -- Position of original (old) content: "left" or "right"
+        conflict_ours_position = 'right', -- Position of ours (:2) in conflict view: "left" or "right"
+        conflict_result_position = 'bottom', -- "bottom" (default): result below diff panes or "center": result between diff panes (three columns)
+        conflict_result_height = 30, -- Height of result pane in bottom layout (% of total height)
+        conflict_result_width_ratio = { 1, 1, 1 }, -- Width ratio for center layout panes {left, center, right} (e.g., {1, 2, 1} for wider result)
+        cycle_next_hunk = true, -- Wrap around when navigating hunks (]c/[c): false to stop at first/last
+        cycle_next_file = true, -- Wrap around when navigating files (]f/[f): false to stop at first/last
+        jump_to_first_change = true, -- Auto-scroll to first change when opening a diff: false to stay at same line
+        highlight_priority = 100, -- Priority for line-level diff highlights (increase to override LSP highlights)
+        compute_moves = false, -- Detect moved code blocks (opt-in, matches VSCode experimental.showMoves)
+      },
+
+      -- Explorer panel configuration
+      explorer = {
+        hidden = true,
+        position = 'left', -- "left" or "bottom"
+        width = 25, -- Width when position is "left" (columns)
+        height = 15, -- Height when position is "bottom" (lines)
+        indent_markers = true, -- Show indent markers in tree view (│, ├, └)
+        initial_focus = 'explorer', -- Initial focus: "explorer", "original", or "modified"
+        icons = {
+          folder_closed = '', -- Nerd Font folder icon (customize as needed)
+          folder_open = '', -- Nerd Font folder-open icon
+        },
+        view_mode = 'list', -- "list" or "tree"
+        flatten_dirs = true, -- Flatten single-child directory chains in tree view
+        file_filter = {
+          ignore = { '.git/**', '.jj/**' }, -- Glob patterns to hide (e.g., {"*.lock", "dist/*"})
+        },
+        focus_on_select = false, -- Jump to modified pane after selecting a file (default: stay in explorer)
+        visible_groups = { -- Which groups to show (can be toggled at runtime)
+          staged = true,
+          unstaged = true,
+          conflicts = true,
+        },
+      },
+
+      -- History panel configuration (for :CodeDiff history)
+      history = {
+        position = 'bottom', -- "left" or "bottom" (default: bottom)
+        width = 40, -- Width when position is "left" (columns)
+        height = 15, -- Height when position is "bottom" (lines)
+        initial_focus = 'history', -- Initial focus: "history", "original", or "modified"
+        view_mode = 'list', -- "list" or "tree" for files under commits
+      },
+
+      -- Keymaps in diff view
+      keymaps = {
+        view = {
+          quit = 'q', -- Close diff tab
+          toggle_explorer = '<leader>b', -- Toggle explorer visibility (explorer mode only)
+          focus_explorer = '<leader>e', -- Focus explorer panel (explorer mode only)
+          next_hunk = ']c', -- Jump to next change
+          prev_hunk = '[c', -- Jump to previous change
+          next_file = ']f', -- Next file in explorer/history mode
+          prev_file = '[f', -- Previous file in explorer/history mode
+          diff_get = 'do', -- Get change from other buffer (like vimdiff)
+          diff_put = 'dp', -- Put change to other buffer (like vimdiff)
+          open_in_prev_tab = 'gf', -- Open current buffer in previous tab (or create one before)
+          close_on_open_in_prev_tab = false, -- Close codediff tab after gf opens file in previous tab
+          toggle_stage = '-', -- Stage/unstage current file (works in explorer and diff buffers)
+          stage_hunk = '<leader>hs', -- Stage hunk under cursor to git index
+          unstage_hunk = '<leader>hu', -- Unstage hunk under cursor from git index
+          discard_hunk = '<leader>hr', -- Discard hunk under cursor (working tree only)
+          hunk_textobject = 'ih', -- Textobject for hunk (vih to select, yih to yank, etc.)
+          show_help = 'g?', -- Show floating window with available keymaps
+          align_move = 'gm', -- Temporarily align moved code blocks across panes
+          toggle_layout = 't', -- Toggle between side-by-side and inline layout
+        },
+        explorer = {
+          select = '<CR>', -- Open diff for selected file
+          hover = 'K', -- Show file diff preview
+          refresh = 'R', -- Refresh git status
+          toggle_view_mode = 'i', -- Toggle between 'list' and 'tree' views
+          stage_all = 'S', -- Stage all files
+          unstage_all = 'U', -- Unstage all files
+          restore = 'X', -- Discard changes (restore file)
+          toggle_changes = 'gu', -- Toggle Changes (unstaged) group visibility
+          toggle_staged = 'gs', -- Toggle Staged Changes group visibility
+          -- Fold keymaps (Vim-style)
+          fold_open = 'zo', -- Open fold (expand current node)
+          fold_open_recursive = 'zO', -- Open fold recursively (expand all descendants)
+          fold_close = 'zc', -- Close fold (collapse current node)
+          fold_close_recursive = 'zC', -- Close fold recursively (collapse all descendants)
+          fold_toggle = 'za', -- Toggle fold (expand/collapse current node)
+          fold_toggle_recursive = 'zA', -- Toggle fold recursively
+          fold_open_all = 'zR', -- Open all folds in tree
+          fold_close_all = 'zM', -- Close all folds in tree
+        },
+        history = {
+          select = '<CR>', -- Select commit/file or toggle expand
+          toggle_view_mode = 'i', -- Toggle between 'list' and 'tree' views
+          refresh = 'R', -- Refresh history (re-fetch commits)
+          -- Fold keymaps (Vim-style, apply to directory nodes only)
+          fold_open = 'zo', -- Open fold (expand current node)
+          fold_open_recursive = 'zO', -- Open fold recursively (expand all descendants)
+          fold_close = 'zc', -- Close fold (collapse current node)
+          fold_close_recursive = 'zC', -- Close fold recursively (collapse all descendants)
+          fold_toggle = 'za', -- Toggle fold (expand/collapse current node)
+          fold_toggle_recursive = 'zA', -- Toggle fold recursively
+          fold_open_all = 'zR', -- Open all folds in tree
+          fold_close_all = 'zM', -- Close all folds in tree
+        },
+        conflict = {
+          accept_incoming = '<leader>ct', -- Accept incoming (theirs/left) change
+          accept_current = '<leader>co', -- Accept current (ours/right) change
+          accept_both = '<leader>cb', -- Accept both changes (incoming first)
+          discard = '<leader>cx', -- Discard both, keep base
+          -- Accept all (whole file) - uppercase versions
+          accept_all_incoming = '<leader>cT', -- Accept ALL incoming changes
+          accept_all_current = '<leader>cO', -- Accept ALL current changes
+          accept_all_both = '<leader>cB', -- Accept ALL both changes
+          discard_all = '<leader>cX', -- Discard ALL, reset to base
+          next_conflict = ']x', -- Jump to next conflict
+          prev_conflict = '[x', -- Jump to previous conflict
+          diffget_incoming = '2do', -- Get hunk from incoming (left/theirs) buffer
+          diffget_current = '3do', -- Get hunk from current (right/ours) buffer
+        },
+      },
+    },
+  },
+
+  {
+    'rmagatti/goto-preview', -- https://github.com/rmagatti/goto-preview
+    dependencies = { 'rmagatti/logger.nvim' },
+    event = 'BufEnter',
+    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    opts = {
+      width = 80, -- Width of the floating window
+      height = 15, -- Height of the floating window
+      border = { '↖', '─', '┐', '│', '┘', '─', '└', '│' }, -- Border characters of the floating window
+      default_mappings = false, -- Bind default mappings
+      debug = false, -- Print debug information
+      opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
+      resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
+      post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+      post_close_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+      references = { -- Configure the telescope UI for slowing the references cycling window.
+        provider = 'telescope', -- telescope|fzf_lua|snacks|mini_pick|default
+        telescope = require('telescope.themes').get_dropdown { hide_preview = false },
+      },
+      -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+      focus_on_open = true, -- Focus the floating window when opening it.
+      dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
+      force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+      bufhidden = 'wipe', -- the bufhidden option to set on the floating window. See :h bufhidden
+      stack_floating_preview_windows = true, -- Whether to nest floating windows
+      same_file_float_preview = true, -- Whether to open a new floating window for a reference within the current file
+      preview_window_title = { enable = true, position = 'left' }, -- Whether to set the preview window title as the filename
+      zindex = 1, -- Starting zindex for the stack of floating windows
+      vim_ui_input = true, -- Whether to override vim.ui.input with a goto-preview floating window
+    },
+  },
+
+  {
+    'nvim-mini/mini.map',
+    version = false, -- use 'false' for main / '*" for stable
+    event = 'VeryLazy',
+    config = function()
+      require('mini.map').setup {
+        -- YOUR CONFIG HERE (all are optional)
+        window = {
+          side = 'right', -- "left" or "right"
+          width = 5, -- columns
+          focusable = false,
+        },
+        show_integration_count = false,
+      }
+
+      vim.api.nvim_create_autocmd('BufEnter', {
+        group = vim.api.nvim_create_augroup('MiniMapAutoOpen', { clear = true }),
+        callback = function()
+          if vim.bo.buftype == '' and vim.bo.filetype ~= '' then
+            require('mini.map').open()
+          end
+        end,
+      })
+    end,
+  },
+
+  -- {
+  --   'kokusenz/deltaview.nvim',
+  --   -- dependencies = { 'kokusenz/delta.lua' },
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('deltaview').setup {
+  --       fzf_picker = 'telescope',
+  --       keyconfig = {
+  --         dm_toggle_keybind = '<leader>gf',
+  --         dv_toggle_keybind = '<leader>gd',
+  --       },
+  --     }
+  --   end,
+  -- },
+  --
+  -- {
+  --   'kokusenz/delta.lua', -- deltaview depends on this
+  --   config = function()
+  --     require('delta').setup {
+  --       highlight_groups = {
+  --         dark = {
+  --           DeltaDiffAddedLine = { bg = '#006b00', default = false },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
+
+  {
+    'hiphish/rainbow-delimiters.nvim',
   },
 }

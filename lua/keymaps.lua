@@ -3,7 +3,7 @@
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -85,3 +85,52 @@ vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'LSP Signature
 
 -- Fyler
 vim.keymap.set('n', '\\', '<cmd>Fyler kind=float<cr>', { desc = 'Fyler' })
+
+-- Mini-diff
+vim.keymap.set('n', '<leader>go', function()
+  require('mini.diff').toggle_overlay(0)
+end, { desc = 'Toggle mini.diff overlay' })
+
+-- CodeDiff
+vim.keymap.set('n', '<leader>gd', '<cmd>CodeDiff<cr>', { desc = '(git)CodeDiff' })
+
+-- Pane switching with numbers
+-- for i = 1, 4 do
+--   vim.keymap.set('n', '<leader' .. i .. '>', function()
+--     vim.api.nvim_command(i .. 'wincmd w')
+--   end, { desc = 'Go to window ' .. i })
+-- end
+
+-- Jump to window 1-9 with <leader>1 ... <leader>9
+for i = 1, 4 do
+  vim.keymap.set('n', '<leader>' .. i, i .. '<C-w>w', { desc = 'Go to window ' .. i })
+end
+
+-- goto-preview https://github.com/rmagatti/goto-preview
+vim.keymap.set('n', 'gp', "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, desc = 'preview definition (goto-preview)' })
+-- vim.keymap.set('n', '<Esc>', "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true, desc = 'close all win goto-preview' })
+
+vim.keymap.set('n', '<Esc>', function()
+  require('goto-preview').close_all_win()
+  vim.cmd 'nohlsearch'
+end, { noremap = true, silent = true, desc = 'Close goto-preview windows + nohlsearch' })
+
+-- incremental selection treesitter/lsp
+vim.keymap.set('n', '<C-Right>', function()
+  vim.cmd 'normal! v'
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('an', true, false, true), 'x', false)
+end, { desc = 'Increment selection' })
+vim.keymap.set('x', '<C-Right>', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('an', true, false, true), 'x', false)
+end, { desc = 'Increment selection' })
+vim.keymap.set('x', '<C-Left>', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('in', true, false, true), 'x', false)
+end, { desc = 'Decrement selection' })
+
+-----
+--vim.keymap.set({ 'n', 'x', 'o' }, 's', require('jump').start, {})
+
+-- deltaview
+
+-- vim.keymap.set('n', '<leader>gd', ':DeltaView<CR>', { desc = 'DeltaView' })
+-- vim.keymap.set('n', '<leader>gf', ':DeltaMenu<CR>', { desc = 'DeltaMenu' })

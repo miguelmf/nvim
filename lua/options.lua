@@ -86,7 +86,9 @@ if vim.g.neovide then
   -- vim.o.guifont = 'Cascadia Code SemiLight:h17'
   -- vim.o.guifont = 'Cascadia Code Light:h16.5'
   -- vim.o.guifont = 'Cascadia Code Light:h17.5'
+
   vim.o.guifont = 'FiraCode Nerd Font Mono Light:h17'
+  -- vim.o.guifont = 'Myna:h17'
 
   vim.g.neovide_cursor_vfx_mode = ''
   vim.g.neovide_cursor_animation_length = 0
@@ -98,4 +100,8 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 -- vim.opt.expandtab = true
 
-vim.opt.diffopt = 'inline:char'
+-- vim.opt.diffopt = 'inline:char'
+
+-- code mini map
+-- vim.g.minimap_auto_start = 1
+-- vim.g.minimap_auto_start_win_enter = 1

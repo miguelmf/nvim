@@ -69,6 +69,14 @@ return {
           buffers = {
             sort_lastused = true,
           },
+          git_status = {
+            layout_config = {
+              height = 0.95,
+              width = 0.95,
+              preview_cutoff = 0,
+              preview_width = 0.65,
+            },
+          },
         },
 
         defaults = {
@@ -90,13 +98,14 @@ return {
               -- ctxlen = vim.o.scrolloff,
               ctxlen = 1,
             },
-            side_by_side = true,
-            layout_strategy = 'vertical',
+            -- use_delta = true,
+            -- side_by_side = true,
+            layout_strategy = 'horizontal',
             layout_config = {
               height = 100,
-              preview_cutoff = 1,
-              -- mirror = true, -- This would make the preview window in the bottom
-              preview_height = 0.7,
+              width = 135,
+              preview_cutoff = 0,
+              preview_width = 0.7,
             },
           },
         },
@@ -113,6 +122,7 @@ return {
       -- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       -- vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Telescope Git Status' })
       -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>t/', builtin.live_grep, { desc = '[S]earch by [G]rep' })
